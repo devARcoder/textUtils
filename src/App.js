@@ -1,30 +1,23 @@
-import { useState } from 'react';
-import './App.css';
-import Navbar from './Components/Navbar';
-import TextForm from './Components/TextForm';
-// import About from './Components/About';
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import TextForm from "./Components/TextForm";
+import About from "./Components/About";
+import {
+  BrowserRouter,
+  Routes, // instead of "Switch"
+  Route,
+} from "react-router-dom";
 
-
-// fuction
 function App() {
-  const [mode, setMode] = useState("white")
-  const toggleMode = () =>{
-    if (mode === 'white'){
-      setMode('black')
-      document.body.style.backgroundColor = "black"
-    }
-    else{
-      setMode('black')
-      document.body.style.backgroundColor = "white"
-    }
-      
-  }
   return (
     <>
-    {/* <Navbar/> */}
-    <Navbar title="devARcoder" mode={mode} toggleMode={toggleMode}/>
-    <TextForm heading="Enter the Text to Analyze"/>
-    {/* <About /> */}
+      <BrowserRouter>
+        <Navbar title="devARcoder" />
+        <Routes>
+          <Route exact path="/about" element={<About />} />
+          <Route exact path="/" element={<TextForm heading="Enter the Text to Analyze" />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

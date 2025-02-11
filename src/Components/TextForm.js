@@ -49,22 +49,22 @@ export default function TextForm(props) {
           ></textarea>
         </div>
         <div className="grid grid-cols-1 space-y-2 space-x-0 mx-14 md:grid-cols-4 md:space-y-0 md:space-x-4 md:mx-2 md:flex justify-center">
-          <button onClick={handleUpClick} className="btn btn-primary">
+          <button disabled={text.length===0} onClick={handleUpClick} className="btn btn-primary">
             Convert to UpperCase
           </button>
-          <button onClick={handleLowerClick} className="btn btn-primary">
+          <button disabled={text.length===0} onClick={handleLowerClick} className="btn btn-primary">
             Convert to LowerCase
           </button>
-          <button onClick={handleCopyClick} className="btn btn-primary">
+          <button disabled={text.length===0} onClick={handleCopyClick} className="btn btn-primary">
             Copy to Clipboard
           </button>
-          <button onClick={handleRemoveExtraSpaceClick} className="btn btn-primary">
+          <button disabled={text.length===0} onClick={handleRemoveExtraSpaceClick} className="btn btn-primary">
             Remove Extra Spaces
           </button>
           {/* <button onClick={capitalizeFirstLetterOfEachWord} className="btn btn-primary">
             Convert to Capitalize
           </button> */}
-          <button onClick={handleClearClick} className="btn btn-primary">
+          <button disabled={text.length===0} onClick={handleClearClick} className="btn btn-primary">
             Clear Text
           </button>
         </div>
@@ -73,11 +73,11 @@ export default function TextForm(props) {
       <div className="container mt-6 text-center">
         <h2 className="text-2xl font-bold">Your Text Summery</h2>
         <p>
-          {text.split(" ").length} words and {text.length} character
+          {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} character
         </p>
         <p>{0.008 * text.split(" ").length} Minustes Read</p>
         <h2 className="text-2xl font-bold">Preview</h2>
-        <p>{text}</p>
+        <p>{text.length>0?text:"Nothing to Preview"}</p>
       </div>
     </>
   );
