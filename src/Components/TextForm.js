@@ -14,9 +14,8 @@ export default function TextForm(props) {
     setText(newText);
   };
   const handleCopyClick = () =>{
-    let text = document.getElementById('myBox')
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges()
+    navigator.clipboard.writeText(text);
   }
   const handleRemoveExtraSpaceClick = () =>{
     let newText = text.split(/[ ]+/);
@@ -73,9 +72,9 @@ export default function TextForm(props) {
       <div className="container mt-6 text-center">
         <h2 className="text-2xl font-bold">Your Text Summery</h2>
         <p>
-          {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} character
+          {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} character
         </p>
-        <p>{0.008 * text.split(" ").length} Minustes Read</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minustes Read</p>
         <h2 className="text-2xl font-bold">Preview</h2>
         <p>{text.length>0?text:"Nothing to Preview"}</p>
       </div>
