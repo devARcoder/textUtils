@@ -4,6 +4,8 @@ import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
 // import About from './Components/About';
 
+
+// fuction
 function App() {
   const [mode, setMode] = useState("white")
   const toggleMode = () =>{
